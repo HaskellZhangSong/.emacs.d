@@ -7,17 +7,21 @@
                                (setq truncate-lines nil)))
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((lisp . t)
-     (sh . t)
-     (python . t)
-     (R . t)
-     (ruby . t)
-     (ditaa . t)
-     (dot . t)
-     (octave . t)
-     (sqlite . t)
-     (perl . t)
-     (C . t)))
+   (append
+    '((lisp . t)
+      (python . t)
+      (R . t)
+      (ruby . t)
+      (ditaa . t)
+      (dot . t)
+      (octave . t)
+      (sqlite . t)
+      (perl . t)
+      (C . t))
+    ;; Compatible with newer version v8.2.5+ of org-mode
+    (if (require 'ob-shell nil 'noerror)
+        '((shell . t))
+      '((sh . t)))))
   (setq org-capture-templates
         '(("t" "Todo" entry (file+headline "~/org/task.org" "Tasks")
            "* TODO %?\n %i\n %a")
@@ -76,6 +80,11 @@ Do not change habits, scheduled items or repeating todos."
   
   (setq org-log-done 'time)
   :bind (("C-c c" . org-capture)))
+
+;; Compatible with newer version 9+ of org-mode
+(unless (boundp 'org-block-background)
+  (defface org-block-background '((t ()))
+    "Face used for the source block background."))
 
 ;; 用 Unicode 符号高亮显示 titles 标志
 (use-package org-bullets
