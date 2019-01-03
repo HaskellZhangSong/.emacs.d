@@ -18,11 +18,11 @@
 
 (setq *spell-check-support-enabled* nil) ;; Enable with t if you prefer
 (setq *is-a-mac* (eq system-type 'darwin))
-(setq *win64* (eq system-type 'windows-nt) )
-(setq *cygwin* (eq system-type 'cygwin) )
-(setq *linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)) )
-(setq *unix* (or *linux* (eq system-type 'usg-unix-v) (eq system-type 'berkeley-unix)) )
-(setq *emacs24* (and (not (featurep 'xemacs)) (or (>= emacs-major-version 24))) )
+(setq *win64* (eq system-type 'windows-nt))
+(setq *cygwin* (eq system-type 'cygwin))
+(setq *linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)))
+(setq *unix* (or *linux* (eq system-type 'usg-unix-v) (eq system-type 'berkeley-unix)))
+(setq *emacs24* (and (not (featurep 'xemacs)) (or (>= emacs-major-version 24))))
 (setq *no-memory* (cond
                    (*is-a-mac*
                     (< (string-to-number (nth 1 (split-string (shell-command-to-string "sysctl hw.physmem")))) 4000000000))
@@ -106,15 +106,35 @@
  ;; If there is more than one, they won't work right.
  '(cfs--current-profile-name "same-width" t)
  '(cfs--fontsize-steps (quote (4 4 4)) t)
- '(package-selected-packages (quote (parinfer))))
+ '(custom-enabled-themes (quote (solarized-dark)))
+ '(custom-safe-themes
+   (quote
+    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
+ '(package-selected-packages (quote (solarized-theme parinfer)))
+ '(scroll-bar-mode nil)
+ '(tabbar-mode nil nil (tabbar)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
-
+ '(comint-highlight-input ((t (:weight bold))))
+ '(rst-level-1 ((t (:background "gray57"))))
+ '(scroll-bar ((t nil)))
+ '(unicode-graph-face ((t (:inherit (quote font-lock-keyword-face) :family "Menlo" :foreground "Black")))))
 ;; Local Variables:
 ;; coding: utf-8-emacs
 ;; End:
 
+(setq visible-bell nil)
+(setq ring-bell-function 'ignore)
+(setq inhibit-startup-screen t)
+(setq initial-scratch-message nil)
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+
+(global-set-key (kbd "C-/") 'undo)
+(add-hook 'unicode-graph-mode  (lambda () (normal-mode t)))
+(put 'dired-find-alternate-file 'disabled nil)
+(with-eval-after-load 'tls
+    (push "/usr/local/etc/libressl/cert.pem" gnutls-trustfiles))
