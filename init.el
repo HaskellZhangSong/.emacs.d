@@ -110,7 +110,7 @@
  '(custom-safe-themes
    (quote
     ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
- '(package-selected-packages (quote (solarized-theme parinfer)))
+ '(package-selected-packages (quote (yasnippet solarized-theme parinfer)))
  '(scroll-bar-mode nil)
  '(tabbar-mode nil nil (tabbar)))
 (custom-set-faces
@@ -119,6 +119,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(comint-highlight-input ((t (:weight bold))))
+ '(markdown-bold-face ((t (:inherit bold :weight bold :family "Menlo"))))
+ '(markdown-code-face ((t (:inherit (quote font-lock-function-name-face) :foreground "Black" :height 1))))
+ '(markdown-header-face ((t (:inherit font-lock-function-name-face :weight bold :foreground "#1524FB" :family "Menlo"))))
+ '(markdown-inline-code-face ((t (:inherit font-lock-constant-face :foreground "#FF8000"))))
+ '(markdown-list-face ((t (:inherit markdown-markup-face :foreground "Purple"))))
+ '(markdown-table-face ((t (:inherit (quote font-lock-constant-face) :foreground "Black" :family "Menlo" :height 1))))
  '(rst-level-1 ((t (:background "gray57"))))
  '(scroll-bar ((t nil)))
  '(unicode-graph-face ((t (:inherit (quote font-lock-keyword-face) :family "Menlo" :foreground "Black")))))
