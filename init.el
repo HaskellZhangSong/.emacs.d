@@ -119,11 +119,18 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(comint-highlight-input ((t (:weight bold))))
+ '(markdown-blockquote-face ((t (:inherit nil :foreground "gray" :height 1))))
  '(markdown-bold-face ((t (:inherit bold :weight bold :family "Menlo"))))
- '(markdown-code-face ((t (:inherit (quote font-lock-function-name-face) :foreground "Black" :height 1))))
- '(markdown-header-face ((t (:inherit font-lock-function-name-face :weight bold :foreground "#1524FB" :family "Menlo"))))
+ '(markdown-code-face ((t (:foreground "Gray" :height 1.0))) nil "This is comment for markdown-code-face songzh set")
+ '(markdown-header-face ((t (:inherit font-lock-function-name-face :foreground "Green" :weight bold :family "Menlo"))))
+ '(markdown-header-face-1 ((t (:foreground "Gray"))))
+ '(markdown-header-face-2 ((t (:inherit markdown-header-face :foreground "Gray"))))
+ '(markdown-header-face-3 ((t (:foreground "Green"))))
+ '(markdown-hr-face ((t (:foreground "gray"))))
  '(markdown-inline-code-face ((t (:inherit font-lock-constant-face :foreground "#FF8000"))))
  '(markdown-list-face ((t (:inherit markdown-markup-face :foreground "Purple"))))
+ '(markdown-markup-face ((t (:inherit shadow :slant normal :weight normal :height 1.2))))
+ '(markdown-pre-face ((t (:foreground "Gray" :height 1.0))))
  '(markdown-table-face ((t (:inherit (quote font-lock-constant-face) :foreground "Black" :family "Menlo" :height 1))))
  '(rst-level-1 ((t (:background "gray57"))))
  '(scroll-bar ((t nil)))
@@ -144,3 +151,23 @@
 (put 'dired-find-alternate-file 'disabled nil)
 (with-eval-after-load 'tls
     (push "/usr/local/etc/libressl/cert.pem" gnutls-trustfiles))
+
+
+;; UTF-8 support
+(prefer-coding-system       'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+
+(setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+
+
+;; Beancount
+(add-to-list 'load-path "~/.emacs.d/other-mode/beancount")
+(require 'beancount)
+(add-to-list 'auto-mode-alist '("\\.beancount\\'" . beancount-mode))
+
+
+(setenv "SHELL" "/bin/zsh")
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+(setq explicit-shell-file-name "/bin/zsh")

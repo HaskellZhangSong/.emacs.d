@@ -18,18 +18,19 @@
                                                 :family "Menlo"))))
            '(markdown-list-face ((t (:inherit markdown-markup-face :foreground "Purple"))))
            `(markdown-code-face ((t (:inherit 'font-lock-function-name-face
+                                              :family "Consolas"
                                               :foreground ,(if (console-p)
-                                                               "White"
-                                                             "Black")
-                                              :height 1))))
+                                                               "Gray"
+                                                             "Gray")
+                                              :height 1.0))))
            '(markdown-inline-code-face ((t (:inherit font-lock-constant-face
                                                      :foreground "#FF8000"))))
            `(markdown-table-face ((t (:inherit 'font-lock-constant-face
                                                :foreground ,(if (console-p)
-                                                                "White"
-                                                              "Black")
+                                                                "Gray"
+                                                              "Gray")
                                                :family "Menlo"
-                                               :height 1))))
+                                               :height 1.0))))
            '(markdown-bold-face ((t (:inherit bold :weight bold :family "Menlo"))))))
 
 (provide 'init-markdown)
