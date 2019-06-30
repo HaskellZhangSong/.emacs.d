@@ -191,3 +191,6 @@
 
 ;; Paredit mode
 (add-hook 'scheme-mode-hook 'enable-paredit-mode)
+
+;; hook rainbow mode
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
