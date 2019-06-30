@@ -168,6 +168,26 @@
 (add-to-list 'auto-mode-alist '("\\.beancount\\'" . beancount-mode))
 
 
-(setenv "SHELL" "/bin/zsh")
-(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+;; set env
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
+
+; (setenv "SHELL" "/bin/zsh")
+; (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setq explicit-shell-file-name "/bin/zsh")
+
+;; Quack (Racket)
+(require 'quack)
+
+; use emacs font style instead of the default drracket one
+(setq quack-fontify-style 'emacs)
+
+; don't override find-file, ido is good
+(setq quack-remap-find-file-bindings-p nil)
+
+;; Rainbow delimiters (for scheme)
+(add-hook 'scheme-mode-hook 'rainbow-delimiters-mode)
+
+;; Paredit mode
+(add-hook 'scheme-mode-hook 'enable-paredit-mode)
