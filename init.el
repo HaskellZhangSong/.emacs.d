@@ -192,5 +192,12 @@
 ;; Paredit mode
 (add-hook 'scheme-mode-hook 'enable-paredit-mode)
 
+;;
+
+(add-hook 'scheme-mode-hook
+  (lambda ()
+   (local-set-key (kbd "C-;") (quote scheme-send-last-sexp))))
+
+
 ;; hook rainbow mode
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
