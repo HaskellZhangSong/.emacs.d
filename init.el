@@ -66,7 +66,7 @@
   (require 'init-buffer)        ;;  10ms
   (require 'init-auto-complete) ;; 
   (require 'init-slime)         ;; 200ms ;; for Common Lisp
-  (require 'init-cider)         ;; for Clojure
+;  (require 'init-cider)         ;; for Clojure
   (require 'init-highlight)     ;;  40ms
   (require 'init-fonts)         ;; Emoji font
   (require 'init-helm)          ;; 600ms
@@ -110,7 +110,9 @@
  '(custom-safe-themes
    (quote
     ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
- '(package-selected-packages (quote (yasnippet solarized-theme parinfer)))
+ '(package-selected-packages
+   (quote
+    (neotree web-mode cider yasnippet solarized-theme parinfer)))
  '(scroll-bar-mode nil)
  '(tabbar-mode nil nil (tabbar)))
 (custom-set-faces
@@ -126,6 +128,8 @@
  '(markdown-header-face-1 ((t (:foreground "Gray"))))
  '(markdown-header-face-2 ((t (:inherit markdown-header-face :foreground "Gray"))))
  '(markdown-header-face-3 ((t (:foreground "Green"))))
+ '(markdown-header-face-4 ((t (:inherit markdown-header-face :foreground "yellow"))))
+ '(markdown-header-face-5 ((t (:inherit markdown-header-face :foreground "orange"))))
  '(markdown-hr-face ((t (:foreground "gray"))))
  '(markdown-inline-code-face ((t (:inherit font-lock-constant-face :foreground "#FF8000"))))
  '(markdown-list-face ((t (:inherit markdown-markup-face :foreground "Purple"))))
@@ -201,3 +205,17 @@
 
 ;; hook rainbow mode
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
+;; UTF-8 support
+(prefer-coding-system       'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+
+(setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+
+
+
+(defadvice ansi-term (after advise-ansi-term-coding-system)
+    (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
+(ad-activate 'ansi-term)
