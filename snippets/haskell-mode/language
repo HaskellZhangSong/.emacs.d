@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: language
+# key: L
+# --
+{-# LANGUAGE $0 #-}

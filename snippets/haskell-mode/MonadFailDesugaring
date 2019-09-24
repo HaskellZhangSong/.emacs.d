@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: MonadFailDesugaring
+# key: MFD
+# --
+MonadFailDesugaring

@@ -138,7 +138,7 @@
  '(markdown-table-face ((t (:inherit (quote font-lock-constant-face) :foreground "Black" :family "Menlo" :height 1))))
  '(rst-level-1 ((t (:background "gray57"))))
  '(scroll-bar ((t nil)))
- '(unicode-graph-face ((t (:inherit (quote font-lock-keyword-face) :family "Menlo" :foreground "Black")))))
+ '(unicode-graph-face ((t (:inherit (quote font-lock-keyword-face) :family "Menlo" :foreground "Gray70")))))
 ;; Local Variables:
 ;; coding: utf-8-emacs
 ;; End:
@@ -214,8 +214,14 @@
 
 (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 
-
-
 (defadvice ansi-term (after advise-ansi-term-coding-system)
     (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
 (ad-activate 'ansi-term)
+
+;; set switch windows key
+(global-set-key (kbd "C-<return>") 'other-window)
+
+(add-hook 'hasekll-mode #'yas-minor-mode)
+
+(require 'yasnippet)
+(yas-global-mode 1)

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: AllowAmbiguousTypes
+# key: AAT
+# --
+AllowAmbiguousTypes
